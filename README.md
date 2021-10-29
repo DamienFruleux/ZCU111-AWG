@@ -1,14 +1,18 @@
 # ZCU111 - Arbitrary Waveform Generator
 
-## Summary
+## Summary : 
 
 [Introduction](https://github.com/DamienFruleux/ZCU111-AWG/#introduction)
 
-[ZCU111 caracteristics](https://github.com/DamienFruleux/ZCU111-AWG/#ZCU111-caracteristics)
+[ZCU111 Caracteristics](https://github.com/DamienFruleux/ZCU111-AWG/#ZCU111-Caracteristics)
 
 [Project Description](https://github.com/DamienFruleux/ZCU111-AWG/#Project-Description)
 
+[Quick Start](https://github.com/DamienFruleux/ZCU111-AWG/#Quick-Start)
 
+[Build the project](https://github.com/DamienFruleux/ZCU111-AWG/#Build-the-project)
+
+[License](https://github.com/DamienFruleux/ZCU111-AWG/#License)
 
 # Introduction
 
@@ -20,7 +24,7 @@ Specifically, we will use the ZCU111 as an [Arbitrary Waveform Generator](https:
 
 The big advantage of using a solution like this is the flexibility of the platform. In addition to using a fully customizable solution, it is possible to use IPs to enrich or accelerate our application (filter...).
 
-# ZCU111 caracteristics
+# ZCU111 Caracteristics
 
 The ZCU111 features 8 14-bit [Digital to Analog Converter](https://en.wikipedia.org/wiki/Digital-to-analog_converter) (DAC) that can sample a signal up to 6.554 GSa/s. 
 
@@ -69,14 +73,12 @@ In your computer :
 - load the **pynq_notebook** in Jupyter : ```http://<board_ip_address>:9090/lab```
 - and run it :)
 
-# Running the Project
-
 # License
 
 [BSD 3-Clause](https://github.com/DamienFruleux/ZCU111-AWG/blob/main/LICENSE)
 
 # Key Features
-(dans chaque exemple)
+(in each example)
 
 
 
