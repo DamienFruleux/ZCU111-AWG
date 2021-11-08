@@ -18,11 +18,11 @@
 
 # Introduction
 
-This project provides an example design for working with the [Zynq UltraScale+ RFSoC RF Data Converter](https://www.xilinx.com/products/intellectual-property/rf-data-converter.html) on the [Zynq UltraScale+ RFSoC ZCU111 Evaluation Kit](https://www.xilinx.com/products/boards-and-kits/zcu111.html). 
+This project provides example designs for working with the [Zynq UltraScale+ RFSoC RF Data Converter](https://www.xilinx.com/products/intellectual-property/rf-data-converter.html) on the [Zynq UltraScale+ RFSoC ZCU111 Evaluation Kit](https://www.xilinx.com/products/boards-and-kits/zcu111.html). 
 
 You can read the [Zynq UltraScale+ RFSoC RF Data Converter v2.6 Gen 1/2/3 Product Guide (PG269)](https://www.xilinx.com/content/dam/xilinx/support/documentation/ip_documentation/usp_rf_data_converter/v2_6/pg269-rf-data-converter.pdf) for more details on the IP core.
 
-Specifically, we will use the ZCU111 as an [Arbitrary Waveform Generator](https://en.wikipedia.org/wiki/Arbitrary_waveform_generator) (AWG). In this way, we will be able to generate any arbitrarily defined waveshape with the [Digital to Analog Converter](https://en.wikipedia.org/wiki/Digital-to-analog_converter) (DAC) integrated to the ZCU111.
+Specifically, we will use the ZCU111 as an fully customizable [Arbitrary Waveform Generator](https://en.wikipedia.org/wiki/Arbitrary_waveform_generator) (AWG). In this way, we will be able to generate any arbitrarily defined waveshape with the [Digital to Analog Converter](https://en.wikipedia.org/wiki/Digital-to-analog_converter) (DAC) integrated to the ZCU111.
 
 The big advantage of using a solution like this is the flexibility of the platform. In addition to using a fully customizable solution, it is possible to use IPs to enrich or accelerate our application with DSP, filters...
 
@@ -86,7 +86,7 @@ In your computer :
 - clone the repo : ```git clone https://github.com/DamienFruleux/ZCU111-AWG```
 - move into the vivado folder : ```cd ZCU111-AWG/vivado```
 - run ```make```
-- import the freshly generated files into the ZCU111: ```scp -r /xxx/ xilinx@<board_ip_address>/ZCU111-AWG/```.
+- import the freshly generated files into the ZCU111: ```scp -r /my_build/* xilinx@<board_ip_address>/ZCU111-AWG/```.
 - load the **pynq_notebook** in Jupyter : ```http://<board_ip_address>:9090/lab```
 - and run it :)
 
