@@ -6,6 +6,8 @@
 
 [ZCU111 Caracteristics](https://github.com/DamienFruleux/ZCU111-AWG/#ZCU111-Caracteristics)
 
+[Key Features](https://github.com/DamienFruleux/ZCU111-AWG/##-Key-Features)
+
 [Project Description](https://github.com/DamienFruleux/ZCU111-AWG/#Project-Description)
 
 [Quick Start](https://github.com/DamienFruleux/ZCU111-AWG/#Quick-Start)
@@ -20,37 +22,53 @@ This project provides an example design for working with the [Zynq UltraScale+ R
 
 You can read the [Zynq UltraScale+ RFSoC RF Data Converter v2.6 Gen 1/2/3 Product Guide (PG269)](https://www.xilinx.com/content/dam/xilinx/support/documentation/ip_documentation/usp_rf_data_converter/v2_6/pg269-rf-data-converter.pdf) for more details on the IP core.
 
-Specifically, we will use the ZCU111 as an [Arbitrary Waveform Generator](https://en.wikipedia.org/wiki/Arbitrary_waveform_generator) (AWG). In this way, we will be able to generate any arbitrarily defined waveshape.
+Specifically, we will use the ZCU111 as an [Arbitrary Waveform Generator](https://en.wikipedia.org/wiki/Arbitrary_waveform_generator) (AWG). In this way, we will be able to generate any arbitrarily defined waveshape with the [Digital to Analog Converter](https://en.wikipedia.org/wiki/Digital-to-analog_converter) (DAC) integrated to the ZCU111.
 
-The big advantage of using a solution like this is the flexibility of the platform. In addition to using a fully customizable solution, it is possible to use IPs to enrich or accelerate our application (filter...).
+The big advantage of using a solution like this is the flexibility of the platform. In addition to using a fully customizable solution, it is possible to use IPs to enrich or accelerate our application with DSP, filters...
 
 # ZCU111 Caracteristics
 
-The ZCU111 features 8 14-bit [Digital to Analog Converter](https://en.wikipedia.org/wiki/Digital-to-analog_converter) (DAC) that can sample a signal up to 6.554 GSa/s. 
+The ZCU111 features 8 14-bit DACs that can sample a signal up to 6.554 GSa/s. 
 
-Moreover, the board has 2 RAMs, both of which can be used in this example: 
+Moreover, the board has 2 RAMs, both of which can be used in these examples: 
+
 - 4GB DDR4 Component, attached to Programmable Logic (PL)
+
 - 4GB DDR4 SODIMM (scalable up to 32GB), attached to Processor Subsystem (PS) 
 
-Of course, the card has its limits (which depend among other things on the memory used), which I will detail in another document.
+Of course, the card has its limits (which depend among other things on the memory used), which I detail [here](https://github.com/DamienFruleux/ZCU111-Doc/tree/main/1-AXI_DMA).
+
+# Key Features
+
+These examples allow to generate 2 analog signals at a sampling frequency previously established. The duration of the signal (or the number of samples) and the sampling frequency will depend on the type of memory used: PS or PL.
+
+In order to have 2 perfectly synchronized signals, I use a single signal which contains on the even numbers a signal A and on the odd numbers a signal B. It is thus necessary to send to the DMA a global signal which alternates the samples of signals A and B. I then realized an IP which separates this signal in 2 independent signals. More informations available [here](https://github.com/DamienFruleux/ZCU111-Doc/tree/main/2-AXI-Stream_RF-Data-Converter).
+
+In each example file, you will find more details about the features of this example.
 
 # Project Description
 
-I use **Vivado 2018.3** to design and generate the bitstream and **Pynq 2.6** to run Jupyter Notebooks or C programs.
+I use **Vivado 2018.3** to design and generate the bitstream and **Pynq 2.6** to run Jupyter Notebooks (or C programs).
 
-You will find the project already built in the *build* folder. This can be useful for a first test.
+Each example of AWG has a different sampling frequency and therefore adapted clocks and memory used. In each example folder, you will find 2 subfolders: 
 
-The design sources are however available in the *vivado* folder.
+- The project already built in the *build* folder. This can be useful for a first quick test.
 
-In the folder *pynq_notebook* you will find an example of a notebook that uses the pynq libraries. This one is quite simple to use, but limited for some features. 
+- The design sources available in the *vivado* folder. If you need to modify it.
 
-In the *python_notebook* folder, you will find an example notebook that uses the standard python libraries. This one is more complicated to use, but allows more flexibility, especially by being able to choose the memory used. 
+In order to use these different examples, you have to use the PS. However, there are different possibilities 
 
-In the *C* folder, you will find a C code that does the same thing as the python notebook, but in C language (in fact, it is rather the opposite because the python notebook is a simple rewriting of the C code). This one allows a programming closer to the machine, which is easier for me. Moreover, C being much more powerful than python, it can be necessary in some cases. 
+- In the folder *pynq_notebook* you will find an example of a notebook that uses the pynq libraries. This one is quite simple to use, but limited for some features However, it is perfectly suitable for running the AWG in an initial instance.
 
-Note that the C programs are used in a rather particular way: Indeed, for my application, I upgraded the SODIMM up to the maximum possible (32GB) and I made sure that it is well mapped in /dev/memory, but without the Linux kernel being able to exploit it like classic RAM. More simply, linux still sees 4GB of RAM, but can access the other 28GB of the PS in the same way as the 4GB of the PL.
+- In the *C_codes* folder (in progress), you will find a C code that uses the standard POSIX libraries. This one is more complicated to use, but allows more flexibility, especially by being able to choose the memory used. This one allows a programming closer to the machine, what I like most.
 
-# Quick Start
+- In the *python_notebook* folder (in progress), you will find an example notebook that uses the standard python libraries. It does the same thing as the C code (in fact, the python notebook is a simple rewriting of the C code). I wrote a python notebook because it is easier to use at first, especially for people not experienced with C. However, keep in mind that C being more powerful than python, it may be necessary in some cases.
+
+Be careful, in these last 2 cases, I suppose you have changed the SODIMM memory for a capacity higher than 8 Gb. 
+
+In any case,  you will find more informations [here](https://github.com/DamienFruleux/ZCU111-Doc/tree/main/3-Processing-System_C-programming-method).
+
+# Quick Start (using build project & pynq_notebook)
 
 You can follow the same instructions as [here](https://github.com/strath-sdr/rfsoc_qpsk#quick-start) and [here](https://github.com/strath-sdr/rfsoc_qpsk#zcu111-setup). 
 
@@ -60,8 +78,7 @@ Specifically, you need to :
 - load the **pynq_notebook** in Jupyter : ```http://<board_ip_address>:9090/lab```
 - and run it :)
 
-
-# Build the project
+# Build the project (in progress)
 
 In your computer :
 
@@ -69,16 +86,10 @@ In your computer :
 - clone the repo : ```git clone https://github.com/DamienFruleux/ZCU111-AWG```
 - move into the vivado folder : ```cd ZCU111-AWG/vivado```
 - run ```make```
-
+- import the freshly generated files into the ZCU111: ```scp -r /xxx/ xilinx@<board_ip_address>/ZCU111-AWG/```.
 - load the **pynq_notebook** in Jupyter : ```http://<board_ip_address>:9090/lab```
 - and run it :)
 
 # License
 
 [BSD 3-Clause](https://github.com/DamienFruleux/ZCU111-AWG/blob/main/LICENSE)
-
-# Key Features
-(in each example)
-
-
-
