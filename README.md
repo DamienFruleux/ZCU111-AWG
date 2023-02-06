@@ -66,7 +66,7 @@ In order to use these different examples, you have to use the PS. However, there
 
 Be careful, in these last 2 cases, I suppose you have changed the SODIMM memory for a capacity higher than 8 Gb. 
 
-In any case,  you will find more informations [here](https://github.com/DamienFruleux/ZCU111-Doc/tree/main/3-Processing-System_C-programming-method).
+In any case, you will find more informations [here](https://github.com/DamienFruleux/ZCU111-Doc/tree/main/3-Processing-System_C-programming-method).
 
 # Quick Start (using build project & pynq_notebook)
 
